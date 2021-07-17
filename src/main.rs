@@ -9,7 +9,7 @@ fn print_heading(title: &str) {
 fn main() {
     //Binary Tree
     print_heading("Binary Tree");
-    let t = Tree::from_vec(make_tree_vals(100));
+    let t = Tree::from_vec(make_tree_vals(50));
     t.print_val();
     t.print_lnr();
     t.print_fs();
