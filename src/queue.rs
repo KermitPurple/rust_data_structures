@@ -1,8 +1,8 @@
-pub struct Stack<T> {
+pub struct Queue<T> {
     vals: Vec<T>,
 }
 
-impl<T> Stack<T> {
+impl<T> Queue<T> {
     pub fn new() -> Self {
         Self { vals: vec![] }
     }
@@ -16,7 +16,11 @@ impl<T> Stack<T> {
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        self.vals.pop()
+        // very very slow but I don't care :)
+        self.vals.reverse();
+        let res = self.vals.pop();
+        self.vals.reverse();
+        res
     }
 
     pub fn is_empty(&self) -> bool {

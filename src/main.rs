@@ -7,6 +7,9 @@ use stack::Stack;
 mod linked_list;
 use linked_list::LinkedList;
 
+mod queue;
+use queue::Queue;
+
 fn print_heading(title: &str) {
     let sep = "-".repeat(30);
     println!("{} {} {}", sep, title, sep);
@@ -68,5 +71,26 @@ fn main() {
     }
     for i in head {
         println!("{}", i);
+    }
+    // Queue
+    print_heading("Queue");
+    let mut q = Queue::new();
+    for i in 0..15 {
+        q.push(i);
+    }
+    for _i in 0..16 {
+        if let Some(val) = q.pop() {
+            println!("{}", val);
+        } else {
+            println!("Empty!");
+        }
+    }
+    q = Queue::from_vec(vec![1, 2, 3, 4]);
+    for _i in 0..5 {
+        if let Some(val) = q.pop() {
+            println!("{}", val);
+        } else {
+            println!("Empty!");
+        }
     }
 }
