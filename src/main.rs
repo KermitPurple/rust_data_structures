@@ -66,4 +66,7 @@ fn main() {
             None => break,
         }
     }
+    for i in head {
+        println!("{}", i);
+    }
 }

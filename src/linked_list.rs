@@ -27,6 +27,27 @@ impl<T> FromIterator<T> for LinkedList<T> {
     }
 }
 
+impl<T> IntoIterator for LinkedList<T> {
+    type Item = T;
+    type IntoIter = LinkedListIterator<T>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        LinkedListIterator(self)
+    }
+}
+
+pub struct LinkedListIterator<T>(LinkedList<T>);
+
+impl<T> Iterator for LinkedListIterator<T> {
+    type Item = T;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        let x = self.0.0.take()?;
+        *self = x.next.into_iter();
+        Some(x.val)
+    }
+}
+
 pub struct ListNode<T> {
     pub val: T,
     pub next: LinkedList<T>,
