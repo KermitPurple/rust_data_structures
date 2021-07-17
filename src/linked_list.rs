@@ -16,7 +16,7 @@ impl<T> LinkedList<T> {
 }
 
 impl<T> FromIterator<T> for LinkedList<T> {
-    fn from_iter<I: IntoIterator<Item=T>>(iter: I) -> Self {
+    fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut head = Self(None);
         let mut curr = &mut head;
         for val in iter {
@@ -31,5 +31,3 @@ pub struct ListNode<T> {
     pub val: T,
     pub next: LinkedList<T>,
 }
-
-

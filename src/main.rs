@@ -50,11 +50,10 @@ fn main() {
         println!("{}", x.val);
         x.next = LinkedList::new(10);
         let LinkedList(option) = x.next;
-        println!("{}",
-                 option
-                 .expect("WE JUST ASSIGNED YOU, ITS NOT NONE")
-                 .val
-                );
+        println!(
+            "{}",
+            option.expect("WE JUST ASSIGNED YOU, ITS NOT NONE").val
+        );
     }
     head = LinkedList::from_vec(vec![1, 2, 3, 4]);
     let mut curr = &mut head;
@@ -63,7 +62,7 @@ fn main() {
             Some(x) => {
                 println!("{}", x.val);
                 curr = &mut x.next;
-            },
+            }
             None => break,
         }
     }
