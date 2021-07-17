@@ -82,7 +82,7 @@ where
     }
 }
 
-pub struct TreeNode<T> {
+struct TreeNode<T> {
     val: T,
     left: Tree<T>,
     right: Tree<T>,
