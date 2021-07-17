@@ -16,11 +16,11 @@ impl<T> Queue<T> {
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        // very very slow but I don't care :)
-        self.vals.reverse();
-        let res = self.vals.pop();
-        self.vals.reverse();
-        res
+        (self.len() > 0).then(|| self.vals.remove(0))
+    }
+    
+    pub fn len(&self) -> usize {
+        self.vals.len()
     }
 
     pub fn is_empty(&self) -> bool {

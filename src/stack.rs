@@ -19,6 +19,10 @@ impl<T> Stack<T> {
         self.vals.pop()
     }
 
+    pub fn len(&self) -> usize {
+        self.vals.len()
+    }
+
     pub fn is_empty(&self) -> bool {
         self.vals.is_empty()
     }
