@@ -4,6 +4,9 @@ use binary_tree::{make_tree_vals, Tree};
 mod stack;
 use stack::Stack;
 
+mod linked_list;
+use linked_list::LinkedList;
+
 fn print_heading(title: &str) {
     let sep = "-".repeat(30);
     println!("{} {} {}", sep, title, sep);
@@ -40,4 +43,28 @@ fn main() {
         }
     }
     println!("{}, {}", s.is_empty(), Stack::<String>::new().is_empty());
+    // Linked List
+    print_heading("Linked List");
+    let mut head = LinkedList::new(15);
+    if let LinkedList(Some(mut x)) = head {
+        println!("{}", x.val);
+        x.next = LinkedList::new(10);
+        let LinkedList(option) = x.next;
+        println!("{}",
+                 option
+                 .expect("WE JUST ASSIGNED YOU, ITS NOT NONE")
+                 .val
+                );
+    }
+    head = LinkedList::from_vec(vec![1, 2, 3, 4]);
+    let mut curr = &mut head;
+    loop {
+        match curr.0.as_mut() {
+            Some(x) => {
+                println!("{}", x.val);
+                curr = &mut x.next;
+            },
+            None => break,
+        }
+    }
 }
