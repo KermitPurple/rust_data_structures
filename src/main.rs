@@ -10,6 +10,9 @@ use linked_list::LinkedList;
 mod queue;
 use queue::Queue;
 
+mod dynamic_array;
+use dynamic_array::DynamicArray;
+
 fn print_heading(title: &str) {
     let sep = "-".repeat(30);
     println!("{} {} {}", sep, title, sep);
@@ -93,4 +96,14 @@ fn main() {
             println!("Empty!");
         }
     }
+    // Dynamic Array
+    print_heading("Dynamic Array");
+    let mut d = DynamicArray::<i32>::new(10);
+    for i in 0..20 {
+        d.push(i);
+    }
+    for i in 0..20 {
+        println!("{}", d.pop().unwrap());
+    }
+    println!("{}", d.capacity);
 }
