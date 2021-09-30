@@ -29,10 +29,8 @@ impl<T> LinkedList<T> {
             loop {
                 if curr.is_empty() { // curr contains a none
                     break curr
-                } else if let Some(node) = curr.0.as_mut() {
-                    curr = &mut node.next
                 } else {
-                    unreachable!()
+                    curr = &mut curr.0.as_mut().unwrap().next
                 }
             }
         }
