@@ -18,8 +18,7 @@ fn print_heading(title: &str) {
     println!("{} {} {}", sep, title, sep);
 }
 
-fn main() {
-    // Binary Tree
+fn test_binary_tree(){
     print_heading("Binary Tree");
     let t = Tree::from_vec(make_tree_vals(50));
     t.print_val();
@@ -27,7 +26,9 @@ fn main() {
     t.print_fs();
     println!("{}", t.contains(&5));
     println!("{:?}", make_tree_vals(10));
-    // Stack
+}
+
+fn test_stack(){
     print_heading("Stack");
     let mut s = Stack::<i32>::new();
     for i in 0..15 {
@@ -49,7 +50,9 @@ fn main() {
         }
     }
     println!("{}, {}", s.is_empty(), Stack::<String>::new().is_empty());
-    // Linked List
+}
+
+fn test_linked_list(){
     print_heading("Linked List");
     let mut head = LinkedList::new(15);
     if let LinkedList(Some(mut x)) = head {
@@ -73,9 +76,33 @@ fn main() {
         }
     }
     for i in head {
-        println!("{}", i);
+        print!("{} ", i);
     }
-    // Queue
+    println!();
+    head = LinkedList(None);
+    for i in 0..10 {
+        head.push_front(i);
+    }
+    for i in 10..20 {
+        head.push_back(i);
+    }
+    while let Some(val) = head.pop_front() {
+        print!("{} ", val);
+    }
+    println!();
+    for i in 0..10 {
+        head.push_front(i);
+    }
+    for i in 10..20 {
+        head.push_back(i);
+    }
+    while let Some(val) = head.pop_back() {
+        print!("{} ", val);
+    }
+    println!();
+}
+
+fn test_queue(){
     print_heading("Queue");
     let mut q = Queue::new();
     for i in 0..15 {
@@ -96,7 +123,9 @@ fn main() {
             println!("Empty!");
         }
     }
-    // Dynamic Array
+}
+
+fn test_dynamic_array(){
     print_heading("Dynamic Array");
     let mut d = DynamicArray::<i32>::new(10);
     for i in 0..20 {
@@ -106,4 +135,12 @@ fn main() {
         println!("{}", d.pop().unwrap());
     }
     println!("{}", d.capacity);
+}
+
+fn main() {
+    // test_binary_tree();
+    // test_stack();
+    test_linked_list();
+    // test_queue();
+    // test_dynamic_array();
 }

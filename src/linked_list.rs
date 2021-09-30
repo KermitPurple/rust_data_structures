@@ -10,8 +10,58 @@ impl<T> LinkedList<T> {
         })))
     }
 
+    pub fn new_with_next(val: T, next: LinkedList<T>) -> Self{
+        Self(Some(Box::new(ListNode{
+            val,
+            next,
+        })))
+    }
+
     pub fn from_vec(vec: Vec<T>) -> Self {
         vec.into_iter().collect()
+    }
+
+    fn get_back(&mut self) -> &mut Self{
+        if self.is_empty() {
+            self
+        } else {
+            let mut curr = self;
+            loop {
+                if curr.is_empty() { // curr contains a none
+                    break curr
+                } else if let Some(node) = curr.0.as_mut() {
+                    curr = &mut node.next
+                } else {
+                    unreachable!()
+                }
+            }
+        }
+    }
+
+    pub fn push_front(&mut self, val: T) {
+        let this = self.0.take();
+        *self = Self::new_with_next(val, LinkedList(this));
+    }
+
+    pub fn push_back(&mut self, val: T) {
+        *self.get_back() = Self::new(val);
+    }
+
+    pub fn pop_front(&mut self) -> Option<T> {
+        if let Some(node) = self.0.take() {
+            *self = node.next;
+            Some(node.val)
+        } else {
+            None
+        }
+    }
+
+    pub fn pop_back(&mut self) -> Option<T> {
+        unimplemented!()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.0.is_none()
     }
 }
 
