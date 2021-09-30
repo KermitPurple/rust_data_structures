@@ -21,6 +21,25 @@ impl<T> LinkedList<T> {
         vec.into_iter().collect()
     }
 
+    fn get_before_back(&mut self) -> &mut Self{
+        if self.is_empty() {
+            self
+        } else {
+            let mut curr = self;
+            loop {
+                if curr.is_empty() { // curr contains a none
+                    break curr
+                } else {
+                    if curr.0.as_ref().unwrap().next.is_empty() {
+                        break curr
+                    } else {
+                        curr = &mut curr.0.as_mut().unwrap().next;
+                    }
+                }
+            }
+        }
+    }
+
     fn get_back(&mut self) -> &mut Self{
         if self.is_empty() {
             self
@@ -55,7 +74,14 @@ impl<T> LinkedList<T> {
     }
 
     pub fn pop_back(&mut self) -> Option<T> {
-        unimplemented!()
+        let list: &mut Self = self.get_before_back();
+        let res = if list.is_empty() {
+            None
+        } else {
+            Some(list.0.take().unwrap().val)
+        };
+        *list = Self(None);
+        res
     }
 
     pub fn is_empty(&self) -> bool {
