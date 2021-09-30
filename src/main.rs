@@ -138,9 +138,9 @@ fn test_dynamic_array(){
 }
 
 fn main() {
-    // test_binary_tree();
-    // test_stack();
+    test_binary_tree();
+    test_stack();
     test_linked_list();
-    // test_queue();
-    // test_dynamic_array();
+    test_queue();
+    test_dynamic_array();
 }
