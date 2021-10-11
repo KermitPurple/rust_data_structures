@@ -7,10 +7,6 @@ impl<T> Queue<T> {
         Self { vals: vec![] }
     }
 
-    pub fn from_vec(vec: Vec<T>) -> Self {
-        Self { vals: vec }
-    }
-
     pub fn push(&mut self, val: T) {
         self.vals.push(val)
     }
@@ -25,5 +21,11 @@ impl<T> Queue<T> {
 
     pub fn is_empty(&self) -> bool {
         self.vals.is_empty()
+    }
+}
+
+impl<T> From<Vec<T>> for Queue<T> {
+    fn from(vals: Vec<T>) -> Self {
+        Self { vals }
     }
 }

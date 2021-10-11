@@ -115,7 +115,7 @@ fn test_queue(){
             println!("Empty!");
         }
     }
-    q = Queue::from_vec(vec![1, 2, 3, 4]);
+    q = vec![1, 2, 3, 4].into();
     for _i in 0..5 {
         if let Some(val) = q.pop() {
             println!("{}", val);
