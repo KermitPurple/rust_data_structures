@@ -131,8 +131,8 @@ fn test_dynamic_array(){
     for i in 0..20 {
         d.push(i);
     }
-    for i in 0..20 {
-        println!("{}", d.pop().unwrap());
+    while let Some(val) = d.pop() {
+        println!("{}", val);
     }
     println!("{}", d.capacity);
 }
