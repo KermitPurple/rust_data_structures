@@ -15,13 +15,14 @@ impl<T> DynamicArray<T> {
 
     pub fn push(&mut self, val: T) {
         if self.index >= self.capacity {
-            self.capacity += 1;
+            self.capacity *= 2;
             let ptr: *mut T = Vec::with_capacity(self.capacity).as_mut_ptr();
             for i in 0..(self.capacity - 1) {
                 unsafe {
                     ptr.add(i).write(self.vals.add(i).read());
                 }
             }
+            self.vals = ptr;
         }
         unsafe {
             self.vals.add(self.index).write(val);
